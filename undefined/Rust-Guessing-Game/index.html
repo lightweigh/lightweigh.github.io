@@ -96,10 +96,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/archive/">
+  <link rel="canonical" href="http://yoursite-url/undefined/Rust-Guessing-Game/">
   <title>
     
-      Archives - stay hungry | stay foolish
+      \[Rust\]1-Guessing Game - stay hungry | stay foolish
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -247,29 +247,7 @@
           <!-- LangSelect -->
           
           
-          <!-- LangSelect start -->
-          <!-- LangSelect -->
-<li>
-  <a id="lang-select-label"><i class="fa fa-globe"></i>
-    <span>
-      English
-    </span>
-    <select id="lang-select" data-canonical="archive/index.html">
-      
-      
-      <option value="en"  selected >
-        English
-      </option>
-      
-      <option value="cn" >
-        简体中文
-      </option>
-      
-    </select>
-  </a>
-</li>
-
-          <!-- LangSelect end -->
+          
           
           
         </ul>
@@ -321,19 +299,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('img/header_img/archive_bg.jpg');
-      --intro-header-background-image-url-page: url('/img/header_img/archive_bg.jpg');
+      --intro-header-background-image-url-post: url('/img/header_img/rust_logo.jpg');
+      --intro-header-background-image-url-page: url('//img/header_img/rust_logo.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('img/header_img/archive_bg.jpg');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/archive_bg.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/rust_logo.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/rust_logo.jpg');
     }
 
     header.intro-header {
-       /*page*/
-        background-image: var(--intro-header-background-image-url-page);
-        /* background-image: url('/img/header_img/archive_bg.jpg'); */
+       /*post*/
+        background-image: var(--intro-header-background-image-url-post);
+        /* background-image: url('/img/header_img/rust_logo.jpg'); */
       
     }
 
@@ -355,10 +333,24 @@
       <div class="row">
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
           
-          <div class="site-heading">
-            <h1>Archives</h1>
-            <!--<hr class="small">-->
-            <span class="subheading">Don&#39;t rush and never settle...... If it&#39;s meant to be, it will be......</span>
+          <div class="post-heading">
+            <div class="tags">
+              
+              <a class="tag" href="/tags/#rust" title="rust">rust</a>
+              
+            </div>
+            <h1>\[Rust\]1-Guessing Game</h1>
+            <h2 class="subheading">elementary grammar learning</h2>
+            <span class="meta">
+              Posted by lightweigh on
+              2023-10-11
+            </span>
+
+
+            
+            
+
+
           </div>
           
         </div>
@@ -399,260 +391,215 @@
 	Friends Blog、
 	anchorjs、
 	) -->
-		<!-- Main Content -->
-<div class="container">
-  <div class="row">
+		<!-- Modify by Yu-Hsuan Yen -->
+<!-- Post Content -->
+<article>
+  <div class="container">
+    <div class="row">
+      <!-- Post Container -->
+      <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
+
+        <h1>Guessing Game</h1>
+<p>this blog summarizes the chapter 2:<em>Programming a Guessing Game of The Rust Programming Language</em> based on my own understanding. Rust is now needed for my autumn training of Open Source Operating System Development. Hope this work can help readers grab the essence of Rust.</p>
+<p><strong>what is Guessing Game?</strong></p>
+<p>Here’s how it works: the program will generate a random integer between 1 and 100. It will then prompt the player to enter a guess. After a guess is entered, the program will indicate whether the guess is too low or too high. If the guess is correct, the game will print a congratulatory message and exit.</p>
+<p><strong>the structure of this blog</strong></p>
+<p>The final code is given in the first place, followed by the details of nearly every line. Since it’s my first exposure to Rust, the understanding of this blog won’t be that sophisticated.</p>
+<blockquote>
+<p>Summary:This project was a hands-on way to introduce you to many new Rust concepts: <u><code>let</code>, <code>match</code>, functions, the use of external crates, and more.</u> In the next few chapters, you’ll learn about these concepts in more detail.</p>
+</blockquote>
+<h2 id="The-Code">The Code</h2>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cargo new guessing_game</span><br><span class="line">$ <span class="built_in">cd</span> guessing_game</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rand::Rng;            <span class="comment">// crates</span></span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;                        </span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);    <span class="comment">// Mind the exclamation. `println!` is a macro instead of a function. </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> secret_number = rand::thread_rng().gen_range(<span class="number">1</span>..=<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">loop</span> &#123;    <span class="comment">// loop keyword creates an infinite loop</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Please input your guess.&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line"></span><br><span class="line">        io::stdin()    <span class="comment">// returns  an instance of std::io::Stdin</span></span><br><span class="line">            .read_line(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">            .expect(<span class="string">&quot;Failed to read line&quot;</span>); <span class="comment">// same as: std::io::stdin</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// let guess: u32 = guess.trim().parse().expect(&quot;Please type a number!&quot;);</span></span><br><span class="line">        <span class="keyword">let</span> guess: <span class="built_in">u32</span> = <span class="keyword">match</span> guess.trim().parse() &#123;</span><br><span class="line">            <span class="literal">Ok</span>(num) =&gt; num,</span><br><span class="line">            <span class="literal">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;You guessed: &#123;guess&#125;&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">match</span> guess.cmp(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too small!&quot;</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too big!&quot;</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;You win!&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Now, let’s split the code into several part to see the details.</p>
+<h2 id="The-println-Macro">The <code>println!</code> Macro</h2>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">let</span> y = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;x = &#123;x&#125; and y + 2 = &#123;&#125;&quot;</span>, y + <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="The-use-Statement">The <code>use</code> Statement</h2>
+<h3 id="standard-library">standard library</h3>
+<p>Statements, <code>use std::io;</code> and <code>use std::cmp::Ordering;</code> , bring the  <code>io</code> input/output library from the standard library <code>std</code> into scope. See everything in <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html">the standard library documentation</a>.</p>
+<h4 id="std-io">std::io</h4>
+<p><code>io::stdin().read_line(&amp;mut guess).expect(&quot;Failed to read line&quot;);</code></p>
+<ol>
+<li>The <code>stdin</code> function returns an instance of <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/io/struct.Stdin.html"><code>std::io::Stdin</code></a></li>
+<li>Then the instance calls the <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/io/struct.Stdin.html#method.read_line"><code>read_line</code></a> method to get input, passing a reference of a <strong>mutable string</strong> type argument, i.e. <code>&amp;mut guess</code> not <code>guess</code>.</li>
+<li>Deal with the exceptions.The read_line method returns a <strong><code>Result</code></strong> value*(more details below)* and the <code>expect</code> method handles the potential failure.</li>
+</ol>
+<h3 id="crates"><strong>crates</strong></h3>
+<p>A crate is a collection of Rust source code files.</p>
+<p>Before we can write code that uses a crate, say like<code>rand</code>, we need to modify the <em>Cargo.toml</em> file to include the <code>rand</code> crate as a dependency.</p>
+<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">rand</span> = <span class="string">&quot;0.8.5&quot;</span></span><br></pre></td></tr></table></figure>
+<p>In this case, we specify the <code>rand</code> crate with the semantic version specifier <code>0.8.5</code>, shorthand for <code>^0.8.5</code>, which means any version that is at least 0.8.5 but below 0.9.0.</p>
+<p><code>Cargo.lock</code> file ensures reproducible builds.</p>
+<p>About update, <code>cargo update</code> command will only update rand version from 0.8.5 to 0.8.6(the latest version that is below 0.9.0).To use <code>rand</code> version 0.9.0 or any version in the 0.9.<em>x</em> series, the <em>Cargo.toml</em> file need to be modified:<code>rand = &quot;0.9.0&quot;</code>.</p>
+<p>Note: <code>cargo doc --open</code> command will build documentation provided by all your dependencies locally and open it in your browser.</p>
+<h2 id="The-let-Statement">The <code>let</code> Statement</h2>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> apples = <span class="number">5</span>; <span class="comment">// immutable</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> bananas = <span class="number">5</span>; <span class="comment">// mutable    </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new(); <span class="comment">//  a mutable variable bound to a new, empty instance of a String.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// shadow the previous value of guess with a new one. </span></span><br><span class="line"><span class="comment">// The colon (:) after guess annotates the variable’s type. </span></span><br><span class="line"><span class="keyword">let</span> guess: <span class="built_in">u32</span> = guess.trim().parse().expect(<span class="string">&quot;Please type a number!&quot;</span>); </span><br></pre></td></tr></table></figure>
+<h2 id="The-match-Statement">The <code>match</code> Statement</h2>
+<p>just like <code>swich-case</code> in Java or C.</p>
+<h2 id="Result">Result</h2>
+<p><a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/result/enum.Result.html"><code>Result</code></a> is an <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch06-00-enums.html"><em>enumeration</em></a>.<code>Result</code>’s variants are <code>Ok</code> and <code>Err</code>.</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> guess: <span class="built_in">u32</span> = guess.trim().parse().expect(<span class="string">&quot;Please type a number!&quot;</span>);</span><br></pre></td></tr></table></figure>
+<p>If <code>guess.trim().parse()</code> returns an <code>Err</code> value, the <code>expect</code> method will cause the program to crash and display the message that you passed as an argument to <code>expect</code>, i.e. “Please type a number!”.</p>
+<p>Also, there is another way to deal with the Err situation. That is using the <code>match</code> statement, since Result is an enum.</p>
+<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> guess: <span class="built_in">u32</span> = <span class="keyword">match</span> guess.trim().parse() &#123;</span><br><span class="line">    <span class="literal">Ok</span>(num) =&gt; num,</span><br><span class="line">    <span class="literal">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="std-cmp-Ordering">std::cmp::Ordering</h2>
+<p>The <code>Ordering</code> type is an enum and has the variants <code>Less</code>, <code>Greater</code>, and <code>Equal</code>. These are the three outcomes that are possible when you compare two values.</p>
+<blockquote>
+<p>ref:<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html">https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html</a></p>
+</blockquote>
+
+
+        <hr>
+        <!-- Pager -->
+        <ul class="pager">
+          
+          
+          <li class="next">
+            <a href="/notes/start-again/" data-toggle="tooltip" data-placement="top" title="start again">Next Post &rarr;</a>
+          </li>
+          
+        </ul>
+
+        
+        <!-- tip start -->
+        <!-- tip -->
+<!-- tip start -->
+<div class="tip">
+  <p>
+    
+      If you like this blog or find it useful for you, you are welcome to comment on it. You are also welcome to share this blog, so that more people can participate in it. If the images used in the blog infringe your copyright, please contact the author to delete them. Thank you !
+    
+  </p>
+</div>
+<!-- tip end -->
+
+        <!-- tip end -->
+        
+
+        
+        <hr>
+
+        <!-- comments start -->
+        <!-- 1. gitalk comment -->
+
+
+<!-- 2. gitment comment -->
+
+
+<!-- 3. disqus comment -->
+
+
+        <!-- comments end -->
+        <hr>
+
+      </div>
+
+      <!-- Catalog: Tabe of Content -->
+      <!-- Table of Contents -->
+
+    
+      <aside id="sidebar">
+        <div id="toc" class="toc-article">
+        <strong class="toc-title">Contents</strong>
+        
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Guessing Game</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-Code"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">The Code</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-println-Macro"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">The println! Macro</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-use-Statement"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">The use Statement</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#standard-library"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">standard library</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#std-io"><span class="toc-nav-number">1.3.1.1.</span> <span class="toc-nav-text">std::io</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#crates"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">crates</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-let-Statement"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">The let Statement</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-match-Statement"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">The match Statement</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Result"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">Result</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#std-cmp-Ordering"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">std::cmp::Ordering</span></a></li></ol></li></ol>
+        
+        </div>
+      </aside>
     
 
-    <!-- USE SIDEBAR -->
-    <!-- Post Container -->
-    <div class="
+
+
+      <!-- Sidebar Container -->
+      <div class="
                 col-lg-8 col-lg-offset-1
-                col-md-8 col-md-offset-1
-                col-sm-12
-                col-xs-12
-                post-container
-            ">
+                col-md-10 col-md-offset-1
+                sidebar-container">
 
-      <!-- Main Content -->
-<div class="container">
-  <div class="row">
-    <div class="col-lg-8 col-lg-offset-0 col-md-10 col-md-offset-1">
-      <!-- 归档列表 -->
-
-      
-
-      <!-- 归档列表 -->
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2023">
-          <span class="tag-text">2023</span>
-        </span>
-        <ul>
-          
-          <li>
-            10-11
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/undefined/Rust-Guessing-Game/" style="color: #0085a1">
-              <span>
-                \[Rust\]1-Guessing Game
-                
-                -- undefined
-                
-              </span>
-            </a>
-          </li>
-          
-          <li>
-            10-11
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/notes/start-again/" style="color: #0085a1">
-              <span>
-                start again
-                
-                -- notes
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-      <div class="one-tag-list">
-        <span class="fa fa-calendar-times-o listing-seperator" id="2022">
-          <span class="tag-text">2022</span>
-        </span>
-        <ul>
-          
-          <li>
-            09-13
-            <i class="fa fa-angle-double-right" aria-hidden="true"></i>
-            <a href="/notes/Hello-world/" style="color: #0085a1">
-              <span>
-                Hello World
-                
-                -- notes
-                
-              </span>
-            </a>
-          </li>
-          
-        </ul>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-      <!-- 如果开启评论功能 -->
-      
-      <hr>
-
-      
-
-      
-      
-    </div>
-
-    <!-- Sidebar Container -->
-<div class="
-    col-lg-3 col-lg-offset-0
-    col-md-3 col-md-offset-0
-    col-sm-12
-    col-xs-12
-    sidebar-container
-">
-    
-        <!-- Visitors -->
-<h5><a href="/">VISITORS</a></h5>
-
-
-        <hr>
-    
         <!-- Featured Tags -->
+        
+        <section>
+          <!-- no hr -->
+          <h5>
+            <a href="/tags/">FEATURED TAGS</a>
+          </h5>
+          <div class="tags">
+            
+            <a class="tag" href="/tags/#rust" title="rust">rust</a>
+            
+          </div>
+        </section>
+        
 
-<section>
-  <h5><a href="/tags/">FEATURED TAGS</a></h5>
-  <div class="tags">
-    
-    
-    <a href="/tags/#helloworld" title="helloworld" rel="2">helloworld</a>
-    
-    
-    
-    <a href="/tags/#rust" title="rust" rel="1">rust</a>
-    
-    
-  </div>
-</section>
-
-
-        <hr>
-    
-        <!-- Short About -->
-<section class="visible-md visible-lg">
-  <h5><a href="/about/">ABOUT ME</a></h5>
-  <div class="short-about">
-
-    
-    <img id="avatar_pic" src="/img/avatar/roguerabbit.jpg" alt="avatar_pic" style="box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -moz-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);
-    -webkit-box-shadow: 5px 5px 10px 5px rgba(0, 0, 0, .5);" />
-    
-
-    
-    <p>I don&#39;t know where I am going ,but I am on my way...</p>
-    
-
-    <!-- SNS Link -->
-    <ul class="list-inline">
-      
-
-      
-      <li>
-        <a target="_blank" href="https://github.com/lightweigh">
-          <span class="fa-stack fa-lg">
-            <i class="fa fa-circle fa-stack-2x"></i>
-            <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-          </span>
-        </a>
-      </li>
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-      
-
-    </ul>
-  </div>
-</section>
-
-        <hr>
-    
-        <!-- RECENT POSTS -->
-
-<h5><a href="/">RECENT POSTS</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="../undefined/Rust-Guessing-Game/">
-      <li>\[Rust\]1-Guessing Game</li>
-    </a>
-    
-    <a href="../notes/start-again/">
-      <li>start again</li>
-    </a>
-    
-    <a href="../notes/Hello-world/">
-      <li>Hello World</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
         <!-- Friends Blog -->
-
-<h5><a href="/">FRIENDS</a></h5>
-<ul class="list-inline">
-  
-  <li><a href="https://v-vincen.life/" target="_blank">V_Vincen</a></li>
-  
-  <li><a href="https://hexo.io/" target="_blank">Hexo</a></li>
-  
-</ul>
-
-
+        
         <hr>
-    
-        <!-- Archives -->
+        <h5>FRIENDS</h5>
+        <ul class="list-inline">
 
-<h5><a href="/archives/">archives</a></h5>
-<div class="widget">
-  <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="../archives/2023/10/">October 2023</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="../archives/2022/09/">September 2022</a><span class="archive-list-count">1</span></li></ul>
-</div>
-
-
-        <hr>
-    
-        <!-- Categories -->
-
-<h5><a href="/categories/">categories</a></h5>
-<div class="widget">
-  <ul>
-    
-    <a href="/categories/#helloworld">
-      <li>helloworld</li>
-    </a>
-    
-    <a href="/categories/#programing languages">
-      <li>programing languages</li>
-    </a>
-    
-  </ul>
-</div>
-
-
-        <hr>
-    
-</div>
-
-
-    
+          
+          <li>
+            <a href="https://v-vincen.life/" target="_blank">V_Vincen</a>
+          </li>
+          
+          <li>
+            <a href="https://hexo.io/" target="_blank">Hexo</a>
+          </li>
+          
+        </ul>
+        
+      </div>
+    </div>
   </div>
-</div>
+</article>
+
+
+
+<!-- anchorjs start -->
+<!-- async load function -->
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script type="text/javascript">
+  // async load function
+  function async (u, c) {
+    var d = document,
+      t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) {
+      o.addEventListener('load', function(e) {
+        c(null, e);
+      }, false);
+    }
+    s.parentNode.insertBefore(o, s);
+  };
+</script>
+<script type="text/javascript">
+  //anchor-js, Doc:http://bryanbraun.github.io/anchorjs/
+  async ("https://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js", function() {
+    anchors.options = {
+      visible: 'hover',
+      placement: 'left',
+      // icon: 'ℬ'
+      icon: '❡'
+    };
+    anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+  });
+</script>
+<style>
+  /* place left on bigger screen */
+  @media all and (min-width: 800px) {
+    .anchorjs-link {
+      position: absolute;
+      left: -0.75em;
+      font-size: 1.1em;
+      margin-top: -0.1em;
+    }
+  }
+</style>
+
+<!-- anchorjs end -->
+
 
 
 		<!-- Footer (contains ThemeColor、viewer) -->
