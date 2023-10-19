@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite-url/undefined/CPP-Object-Oriented/</loc>
+    
+    <lastmod>2023-10-19</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/undefined/C-From-C-to-C/</loc>
+    
+    <lastmod>2023-10-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/notes/tt/</loc>
+    
+    <lastmod>2023-10-12</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite-url/notes/Rust-Guessing-Game/</loc>
     
     <lastmod>2023-10-11</lastmod>
@@ -60,22 +81,29 @@
 
   <url>
     <loc>http://yoursite-url/</loc>
-    <lastmod>2023-10-11</lastmod>
+    <lastmod>2023-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>http://yoursite-url/tags/helloworld/</loc>
-    <lastmod>2023-10-11</lastmod>
+    <loc>http://yoursite-url/tags/cpp/</loc>
+    <lastmod>2023-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>http://yoursite-url/tags/rust/</loc>
-    <lastmod>2023-10-11</lastmod>
+    <lastmod>2023-10-19</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>http://yoursite-url/tags/helloworld/</loc>
+    <lastmod>2023-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -83,15 +111,15 @@
 
   
   <url>
-    <loc>http://yoursite-url/categories/helloworld/</loc>
-    <lastmod>2023-10-11</lastmod>
+    <loc>http://yoursite-url/categories/programming-languages/</loc>
+    <lastmod>2023-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>http://yoursite-url/categories/programing-languages/</loc>
-    <lastmod>2023-10-11</lastmod>
+    <loc>http://yoursite-url/categories/helloworld/</loc>
+    <lastmod>2023-10-19</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

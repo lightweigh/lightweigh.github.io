@@ -96,10 +96,10 @@
   <!--[if lt IE 9]> <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script> <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script> <![endif]-->
 
   <!-- ga & ba script hoook -->
-  <link rel="canonical" href="http://yoursite-url/notes/Rust-Guessing-Game/">
+  <link rel="canonical" href="http://yoursite-url/undefined/CPP-Object-Oriented/">
   <title>
     
-      [Rust]1-Guessing Game - stay hungry | stay foolish
+      [CPP] Object Oriented - stay hungry | stay foolish
     
   </title>
 <meta name="generator" content="Hexo 5.4.2"></head>
@@ -299,19 +299,19 @@
     .body--light {
       /* intro-header */
       --intro-header-background-image-url-home: url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: url('/img/header_img/rust_logo_1.jpg');
-      --intro-header-background-image-url-page: url('//img/header_img/rust_logo_1.jpg');
+      --intro-header-background-image-url-post: url('./img/header_img/cpp.jpg');
+      --intro-header-background-image-url-page: url('/./img/header_img/cpp.jpg');
     }
     .body--dark {
       --intro-header-background-image-url-home: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/newhome_bg.jpg');
-      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/img/header_img/rust_logo_1.jpg');
-      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('//img/header_img/rust_logo_1.jpg');
+      --intro-header-background-image-url-post: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('./img/header_img/cpp.jpg');
+      --intro-header-background-image-url-page: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.2)), url('/./img/header_img/cpp.jpg');
     }
 
     header.intro-header {
        /*post*/
         background-image: var(--intro-header-background-image-url-post);
-        /* background-image: url('/img/header_img/rust_logo_1.jpg'); */
+        /* background-image: url('./img/header_img/cpp.jpg'); */
       
     }
 
@@ -336,14 +336,14 @@
           <div class="post-heading">
             <div class="tags">
               
-              <a class="tag" href="/tags/#rust" title="rust">rust</a>
+              <a class="tag" href="/tags/#cpp" title="cpp">cpp</a>
               
             </div>
-            <h1>[Rust]1-Guessing Game</h1>
-            <h2 class="subheading">elementary grammar learning</h2>
+            <h1>[CPP] Object Oriented</h1>
+            <h2 class="subheading"></h2>
             <span class="meta">
               Posted by lightweigh on
-              2023-10-11
+              2023-10-19
             </span>
 
 
@@ -399,67 +399,159 @@
       <!-- Post Container -->
       <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 post-container">
 
-        <h1>Guessing Game</h1>
-<p>this blog summarizes the chapter 2:<em>Programming a Guessing Game of The Rust Programming Language</em> based on my own understanding. Rust is now needed for my autumn training of Open Source Operating System Development. Hope this work can help readers grab the essence of Rust.</p>
-<p><strong>what is Guessing Game?</strong></p>
-<p>Here’s how it works: the program will generate a random integer between 1 and 100. It will then prompt the player to enter a guess. After a guess is entered, the program will indicate whether the guess is too low or too high. If the guess is correct, the game will print a congratulatory message and exit.</p>
-<p><strong>the structure of this blog</strong></p>
-<p>The final code is given in the first place, followed by the details of nearly every line. Since it’s my first exposure to Rust, the understanding of this blog won’t be that sophisticated.</p>
+        <h1>类与面向对象</h1>
+<h2 id="类成员的可访问范围">类成员的可访问范围</h2>
+<ul>
+<li>
+<p><code>private</code>: 私有成员，只能在成员函数内访问</p>
+</li>
+<li>
+<p><code>public</code>: 公有成员，可以在任何地方访问</p>
+</li>
+<li>
+<p><code>protected</code>: 保护成员，<s>以后再说</s></p>
+</li>
+<li>
+<p>在类的成员函数内部，能够访问：</p>
+<ul>
+<li>当前对象的全部属性、函数；</li>
+<li>同类其它对象的全部属性、函数。</li>
+</ul>
+</li>
+<li>
+<p>在类的成员函数以外的地方，只能够访问该类对象的公有成员。</p>
+</li>
+<li>
+<p>如果某个成员前面没有上述关键字，则缺省地被认为是私有成员。</p>
+</li>
+<li>
+<p>设置私有成员的机制，叫<strong>隐藏</strong>。</p>
+</li>
+</ul>
+<h2 id="成员函数的重载及参数缺省">成员函数的重载及参数缺省</h2>
+<p>使用缺省参数要注意避免有函数重载时的二义性，如下例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Location</span> &#123;</span></span><br><span class="line">	<span class="keyword">private</span> :</span><br><span class="line">		<span class="keyword">int</span> x, y;</span><br><span class="line">	<span class="keyword">public</span>:</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">( <span class="keyword">int</span> x =<span class="number">0</span>, <span class="keyword">int</span> y = <span class="number">0</span> )</span></span>;</span><br><span class="line">		<span class="function"><span class="keyword">void</span> <span class="title">valueX</span><span class="params">( <span class="keyword">int</span> val = <span class="number">0</span>)</span> </span>&#123; x = val; &#125;</span><br><span class="line">		<span class="function"><span class="keyword">int</span> <span class="title">valueX</span><span class="params">()</span> </span>&#123; <span class="keyword">return</span> x; &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">	Location A;</span><br><span class="line">	A.<span class="built_in">valueX</span>(); <span class="comment">//错误，编译器无法判断调用哪个valueX</span></span><br></pre></td></tr></table></figure>
+<h2 id="构造函数、复制构造函数、类型转换函数与析构函数">构造函数、复制构造函数、类型转换函数与析构函数</h2>
+<h3 id="构造函数的概念">构造函数的概念</h3>
+<p>略。</p>
+<h3 id="构造函数在数组中的使用">构造函数在数组中的使用</h3>
+<p>一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">CSample</span> &#123;</span></span><br><span class="line">	<span class="keyword">int</span> x;</span><br><span class="line">	<span class="keyword">public</span>: </span><br><span class="line">        <span class="built_in">CSample</span>() &#123;</span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;Constructor 1 Called&quot;</span> &lt;&lt; endl;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">CSample</span>(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        	x = n;</span><br><span class="line">        	cout &lt;&lt; <span class="string">&quot;Constructor 2 Called&quot;</span> &lt;&lt; endl;</span><br><span class="line">		&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    CSample array1[<span class="number">2</span>];		<span class="comment">// 自动调用无参构造函数，如没有无参构造函数则报错</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;step1&quot;</span>&lt;&lt;endl;</span><br><span class="line">    CSample array2[<span class="number">2</span>] = &#123;<span class="number">4</span>,<span class="number">5</span>&#125;;	<span class="comment">// 列表初始化. 根据编译器不同, 有的通过临时的CSample对象,然后赋值给array2</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;step2&quot;</span>&lt;&lt;endl;</span><br><span class="line">    CSample array3[<span class="number">2</span>] = &#123;<span class="number">3</span>&#125;;	<span class="comment">// 一个用3初始化, 一个无参构造</span></span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;step3&quot;</span>&lt;&lt;endl;</span><br><span class="line">    CSample * array4 = <span class="keyword">new</span> CSample[<span class="number">2</span>];	<span class="comment">// 无参构造</span></span><br><span class="line">    <span class="keyword">delete</span> []array4;	<span class="comment">// 空间回收, 必须要!</span></span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 输出</span></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Constructor 1 Called</span></span><br><span class="line"><span class="comment">Constructor 1 Called</span></span><br><span class="line"><span class="comment">step1</span></span><br><span class="line"><span class="comment">Constructor 2 Called</span></span><br><span class="line"><span class="comment">Constructor 2 Called</span></span><br><span class="line"><span class="comment">step2</span></span><br><span class="line"><span class="comment">Constructor 2 Called</span></span><br><span class="line"><span class="comment">Constructor 1 Called</span></span><br><span class="line"><span class="comment">step3</span></span><br><span class="line"><span class="comment">Constructor 1 Called</span></span><br><span class="line"><span class="comment">Constructor 1 Called</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>另一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Test</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="built_in">Test</span>( <span class="keyword">int</span> n) &#123; &#125; <span class="comment">//(1)</span></span><br><span class="line">        <span class="built_in">Test</span>( <span class="keyword">int</span> n, <span class="keyword">int</span> m) &#123; &#125; <span class="comment">//(2) </span></span><br><span class="line">        <span class="built_in">Test</span>() &#123; &#125; <span class="comment">//(3)</span></span><br><span class="line">&#125;;</span><br><span class="line">Test array1[<span class="number">3</span>] = &#123; <span class="number">1</span>, <span class="built_in">Test</span>(<span class="number">1</span>,<span class="number">2</span>) &#125;;	<span class="comment">// 三个元素分别用(1),(2),(3)初始化</span></span><br><span class="line"></span><br><span class="line">Test array2[<span class="number">3</span>] = &#123; <span class="built_in">Test</span>(<span class="number">2</span>,<span class="number">3</span>), <span class="built_in">Test</span>(<span class="number">1</span>,<span class="number">2</span>) , <span class="number">1</span>&#125;;	<span class="comment">// 三个元素分别用(2),(2),(1)初始化</span></span><br><span class="line"></span><br><span class="line">Test * pArray[<span class="number">3</span>] = &#123; <span class="keyword">new</span> <span class="built_in">Test</span>(<span class="number">4</span>), <span class="keyword">new</span> <span class="built_in">Test</span>(<span class="number">1</span>,<span class="number">2</span>) &#125;;	<span class="comment">//两个元素分别用(1),(2) 初始化</span></span><br><span class="line"><span class="comment">// 注意与第一个例子中 CSample array3[2] = &#123;3&#125;; 的区别!</span></span><br></pre></td></tr></table></figure>
+<h3 id="复制构造函数">复制构造函数</h3>
+<p>基本概念：复制构造函数只有一个参数，即<u>对同类对象的引用</u>，形如 <code>X::X( X&amp; )</code>或<code>X::X(const X &amp;)</code>。</p>
+<p>注意这里一定是对象的引用！</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span> :</span><br><span class="line">        <span class="keyword">double</span> real,imag;</span><br><span class="line">        <span class="built_in">Complex</span>()&#123; &#125;</span><br><span class="line">        <span class="built_in">Complex</span>( <span class="keyword">const</span> Complex &amp; c ) &#123;	<span class="comment">// 复制构造函数 Copy Constructor</span></span><br><span class="line">            real = c.real;</span><br><span class="line">            imag = c.imag;</span><br><span class="line">            cout &lt;&lt; “Copy Constructor called”;</span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line">Complex c1; <span class="comment">//调用缺省无参构造函数</span></span><br><span class="line"><span class="function">Complex <span class="title">c2</span><span class="params">(c1)</span></span>;<span class="comment">//调用缺省的复制构造函数,将 c2 初始化成和c1一样</span></span><br></pre></td></tr></table></figure>
+<p>复制构造函数起作用的三种情况</p>
+<ul>
+<li>
+<p>当用一个对象去初始化同类的另一个对象时。</p>
+<p><code>Complex c2(c1);</code>		或</p>
+<p><code>Complex c2 = c1; // 是初始化语句，非赋值语句</code></p>
+</li>
+<li>
+<p>如果某<strong>函数的参数</strong>是类 A 的对象，且该函数被调用时。</p>
+<p><code>void Func(A a1)&#123; &#125;    Func(a2);</code></p>
+<p>这也解释了为什么复制构造函数的参数一定是引用而不能是对象本身！</p>
+</li>
+<li>
+<p>如果<strong>函数的返回值</strong>是类A的对象，且该函数返回时。</p>
+<p><code>A b(4); return b; </code></p>
+</li>
+</ul>
+<h3 id="类型转换构造函数">类型转换构造函数</h3>
+<p>基本概念：只有一个参数，而且<u>不是复制构造函数的构造函数</u>，一般就可以看作是<u>转换构造函数</u>。定义转换构造函数的目的是实现类型的自动转换（比如构造函数例子中的列表初始化）。</p>
+<p>复制构造函数前面可以有<code>explicit</code>修饰符。当有<code>explicit</code>修饰符时，编译系统不能自动地调用类型转换构造函数。例子如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Complex</span> &#123;</span></span><br><span class="line">    <span class="keyword">public</span>: </span><br><span class="line">        <span class="keyword">double</span> real, imag;</span><br><span class="line">        <span class="function"><span class="keyword">explicit</span> <span class="title">Complex</span><span class="params">( <span class="keyword">int</span> i)</span> </span>&#123;	<span class="comment">//显式类型转换构造函数</span></span><br><span class="line">            cout &lt;&lt; <span class="string">&quot;IntConstructor called&quot;</span> &lt;&lt; endl;</span><br><span class="line">            real = i; imag = <span class="number">0</span>; </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">Complex</span>(<span class="keyword">double</span> r,<span class="keyword">double</span> i) &#123;real = r; imag = i; &#125;</span><br><span class="line">&#125;;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">main</span> <span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="function">Complex <span class="title">c1</span><span class="params">(<span class="number">7</span>,<span class="number">8</span>)</span></span>;</span><br><span class="line">    Complex c2 = <span class="built_in">Complex</span>(<span class="number">12</span>);</span><br><span class="line">    c1 = <span class="number">9</span>; <span class="comment">// error, 9**不能**被自动转换成一个临时Complex对象</span></span><br><span class="line">    c1 = <span class="built_in">Complex</span>(<span class="number">9</span>) <span class="comment">//ok</span></span><br><span class="line">    cout &lt;&lt; c1.real &lt;&lt; <span class="string">&quot;,&quot;</span> &lt;&lt; c1.imag &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 当没有 explicit 修饰符时， 9会被自动转换成一个临时Complex对象</span></span><br></pre></td></tr></table></figure>
+<h3 id="析构函数">析构函数</h3>
+<p>基本概念：名字与类名相同，在前面加‘~’ ， 没有参数和返回值，一个类最多只能有一个析构函数。析构函数对象消亡时即自动被调用。可以定义析构函数来在对象消亡前做善后工作，比如释放分配的空间等。</p>
+<p>析构函数的作用就是返回空间。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// String类的析构函数</span></span><br><span class="line">String ::~ <span class="built_in">String</span>()</span><br><span class="line">&#123;</span><br><span class="line">	<span class="keyword">delete</span> [] p;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>析构函数被调用的情况</p>
+<ul>
+<li>对象数组生命期结束时，对象数组的每个元素的析构函数都会被调用。</li>
+<li>delete 运算导致析构函数调用。</li>
+</ul>
+<h2 id="this指针">this指针</h2>
+<p>其作用就是指向成员函数所作用的对象。</p>
+<p>非静态成员函数中可以直接使用this来代表指向该函数作用的对象的指针。静态成员函数中不能使用 this 指针！</p>
+<h2 id="静态成员">静态成员</h2>
+<p><strong>静态成员</strong>：在说明前面加了static关键字的成员（成员变量或成员函数）。</p>
+<p><strong>四种访问方式</strong>（类、对象、指针、引用都可）</p>
+<ul>
+<li>
+<p>类名::成员名</p>
+<p><code>CRectangle::PrintTotal();</code></p>
+</li>
+<li>
+<p>对象名.成员名</p>
+<p><code>CRectangle r;  r.PrintTotal();</code></p>
+</li>
+<li>
+<p>指针-&gt;成员名</p>
+<p><code>CRectangle * p = &amp;r;  p-&gt;PrintTotal();</code></p>
+</li>
+<li>
+<p>引用.成员名</p>
+<p><code>CRectangle &amp; ref = r; int n = ref.nTotalNumber; </code></p>
+</li>
+</ul>
+<p><strong>说明</strong></p>
+<ul>
+<li>
+<p>静态成员变量本质上是全局变量，哪怕一个对象都不存在，类的静态成员变量也存在。</p>
+</li>
+<li>
+<p>静态成员函数本质上是全局函数。</p>
+</li>
+<li>
+<p>设置静态成员这种机制的目的是将和某些类紧密相关的全局变量和函数写到类里面，看上去像一个整体，易于维护和理解。</p>
+</li>
+<li>
+<p>必须在定义类的文件中对静态成员变量进行一次说明或初始化。否则编译能通过，链接不能通过。</p>
+</li>
+<li>
+<p>在静态成员函数中，不能访问非静态成员变量，也不能调用非静态成员函数。</p>
+</li>
+</ul>
+<h2 id="成员对象和封闭类">成员对象和封闭类</h2>
+<p>有成员对象的类叫 封闭（enclosing)类。</p>
+<p><u>一般情况下需要显示地定义封闭类的构造函数</u>。成员对象初始化列表中的参数可以是任意复杂的表达式，可以包括函数，变量，只要表达式中的函数或变量有定义就行。</p>
 <blockquote>
-<p>Summary:This project was a hands-on way to introduce you to many new Rust concepts: <u><code>let</code>, <code>match</code>, functions, the use of external crates, and more.</u> In the next few chapters, you’ll learn about these concepts in more detail.</p>
+<p>任何生成封闭类对象的语句，都要让编译器明白，对象中的成员对象，是如何初始化的。</p>
 </blockquote>
-<h2 id="The-Code">The Code</h2>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ cargo new guessing_game</span><br><span class="line">$ <span class="built_in">cd</span> guessing_game</span><br></pre></td></tr></table></figure>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">use</span> rand::Rng;            <span class="comment">// crates</span></span><br><span class="line"><span class="keyword">use</span> std::cmp::Ordering;</span><br><span class="line"><span class="keyword">use</span> std::io;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;                        </span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Guess the number!&quot;</span>);    <span class="comment">// Mind the exclamation. `println!` is a macro instead of a function. </span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> secret_number = rand::thread_rng().gen_range(<span class="number">1</span>..=<span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">loop</span> &#123;    <span class="comment">// loop keyword creates an infinite loop</span></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;Please input your guess.&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new();</span><br><span class="line"></span><br><span class="line">        io::stdin()    <span class="comment">// returns  an instance of std::io::Stdin</span></span><br><span class="line">            .read_line(&amp;<span class="keyword">mut</span> guess)</span><br><span class="line">            .expect(<span class="string">&quot;Failed to read line&quot;</span>); <span class="comment">// same as: std::io::stdin</span></span><br><span class="line"></span><br><span class="line">        <span class="comment">// let guess: u32 = guess.trim().parse().expect(&quot;Please type a number!&quot;);</span></span><br><span class="line">        <span class="keyword">let</span> guess: <span class="built_in">u32</span> = <span class="keyword">match</span> guess.trim().parse() &#123;</span><br><span class="line">            <span class="literal">Ok</span>(num) =&gt; num,</span><br><span class="line">            <span class="literal">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;You guessed: &#123;guess&#125;&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">match</span> guess.cmp(&amp;secret_number) &#123;</span><br><span class="line">            Ordering::Less =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too small!&quot;</span>),</span><br><span class="line">            Ordering::Greater =&gt; <span class="built_in">println!</span>(<span class="string">&quot;Too big!&quot;</span>),</span><br><span class="line">            Ordering::Equal =&gt; &#123;</span><br><span class="line">                <span class="built_in">println!</span>(<span class="string">&quot;You win!&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>Now, let’s split the code into several part to see the details.</p>
-<h2 id="The-println-Macro">The <code>println!</code> Macro</h2>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">fn</span> <span class="title">main</span></span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> x = <span class="number">5</span>;</span><br><span class="line">    <span class="keyword">let</span> y = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;x = &#123;x&#125; and y + 2 = &#123;&#125;&quot;</span>, y + <span class="number">2</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="The-use-Statement">The <code>use</code> Statement</h2>
-<h3 id="standard-library">standard library</h3>
-<p>Statements, <code>use std::io;</code> and <code>use std::cmp::Ordering;</code> , bring the  <code>io</code> input/output library from the standard library <code>std</code> into scope. See everything in <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/prelude/index.html">the standard library documentation</a>.</p>
-<h4 id="std-io">std::io</h4>
-<p><code>io::stdin().read_line(&amp;mut guess).expect(&quot;Failed to read line&quot;);</code></p>
-<ol>
-<li>The <code>stdin</code> function returns an instance of <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/io/struct.Stdin.html"><code>std::io::Stdin</code></a></li>
-<li>Then the instance calls the <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/io/struct.Stdin.html#method.read_line"><code>read_line</code></a> method to get input, passing a reference of a <strong>mutable string</strong> type argument, i.e. <code>&amp;mut guess</code> not <code>guess</code>.</li>
-<li>Deal with the exceptions.The read_line method returns a <strong><code>Result</code></strong> value*(more details below)* and the <code>expect</code> method handles the potential failure.</li>
-</ol>
-<h3 id="crates"><strong>crates</strong></h3>
-<p>A crate is a collection of Rust source code files.</p>
-<p>Before we can write code that uses a crate, say like<code>rand</code>, we need to modify the <em>Cargo.toml</em> file to include the <code>rand</code> crate as a dependency.</p>
-<figure class="highlight toml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[dependencies]</span></span><br><span class="line"><span class="attr">rand</span> = <span class="string">&quot;0.8.5&quot;</span></span><br></pre></td></tr></table></figure>
-<p>In this case, we specify the <code>rand</code> crate with the semantic version specifier <code>0.8.5</code>, shorthand for <code>^0.8.5</code>, which means any version that is at least 0.8.5 but below 0.9.0.</p>
-<p><code>Cargo.lock</code> file ensures reproducible builds.</p>
-<p>About update, <code>cargo update</code> command will only update rand version from 0.8.5 to 0.8.6(the latest version that is below 0.9.0).To use <code>rand</code> version 0.9.0 or any version in the 0.9.<em>x</em> series, the <em>Cargo.toml</em> file need to be modified:<code>rand = &quot;0.9.0&quot;</code>.</p>
-<p>Note: <code>cargo doc --open</code> command will build documentation provided by all your dependencies locally and open it in your browser.</p>
-<h2 id="The-let-Statement">The <code>let</code> Statement</h2>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> apples = <span class="number">5</span>; <span class="comment">// immutable</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> bananas = <span class="number">5</span>; <span class="comment">// mutable    </span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut</span> guess = <span class="built_in">String</span>::new(); <span class="comment">//  a mutable variable bound to a new, empty instance of a String.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// shadow the previous value of guess with a new one. </span></span><br><span class="line"><span class="comment">// The colon (:) after guess annotates the variable’s type. </span></span><br><span class="line"><span class="keyword">let</span> guess: <span class="built_in">u32</span> = guess.trim().parse().expect(<span class="string">&quot;Please type a number!&quot;</span>); </span><br></pre></td></tr></table></figure>
-<h2 id="The-match-Statement">The <code>match</code> Statement</h2>
-<p>just like <code>swich-case</code> in Java or C.</p>
-<h2 id="Result">Result</h2>
-<p><a target="_blank" rel="noopener" href="https://doc.rust-lang.org/std/result/enum.Result.html"><code>Result</code></a> is an <a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch06-00-enums.html"><em>enumeration</em></a>.<code>Result</code>’s variants are <code>Ok</code> and <code>Err</code>.</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> guess: <span class="built_in">u32</span> = guess.trim().parse().expect(<span class="string">&quot;Please type a number!&quot;</span>);</span><br></pre></td></tr></table></figure>
-<p>If <code>guess.trim().parse()</code> returns an <code>Err</code> value, the <code>expect</code> method will cause the program to crash and display the message that you passed as an argument to <code>expect</code>, i.e. “Please type a number!”.</p>
-<p>Also, there is another way to deal with the Err situation. That is using the <code>match</code> statement, since Result is an enum.</p>
-<figure class="highlight rust"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> guess: <span class="built_in">u32</span> = <span class="keyword">match</span> guess.trim().parse() &#123;</span><br><span class="line">    <span class="literal">Ok</span>(num) =&gt; num,</span><br><span class="line">    <span class="literal">Err</span>(_) =&gt; <span class="keyword">continue</span>,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="std-cmp-Ordering">std::cmp::Ordering</h2>
-<p>The <code>Ordering</code> type is an enum and has the variants <code>Less</code>, <code>Greater</code>, and <code>Equal</code>. These are the three outcomes that are possible when you compare two values.</p>
-<blockquote>
-<p>ref:<a target="_blank" rel="noopener" href="https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html">https://doc.rust-lang.org/book/ch02-00-guessing-game-tutorial.html</a></p>
-</blockquote>
+<p>构造时对象成员先构造，封闭类后构造。析构时封闭类先析构对象成员后析构。“先构造的后析构”</p>
+<h2 id="友元-friends">友元 friends</h2>
+<p>==非常重要的概念！==</p>
+<p>友元分为友元函数和友元类两种</p>
+<p><strong>友元函数: 一个类的友元函数可以访问该类的私有成员.</strong></p>
+<p><strong>友元类: 如果A是B的友元类，那么A的成员函数可以访问B的私有成员。</strong></p>
+<p>友元类之间的关系不能传递，不能继承。</p>
+<h2 id="常量成员函数">常量成员函数</h2>
+<p>常量成员函数：在<u>定义</u>常量成员函数和<u>声明</u>常量成员函数说明后面带有<code>const</code>关键字。</p>
+<p><strong>说明</strong></p>
+<ul>
+<li>
+<p>常量成员函数内部不能改变属性的值，也不能调用非常量成员函数。</p>
+</li>
+<li>
+<p>常量成员函数的重载：两个函数，名字和参数表都一样，但是一个是const,一个不是，算重载。</p>
+</li>
+<li>
+<p>可以在<code>const</code>成员函数中修改的成员变量用<code>mutable</code>进行修饰。</p>
+</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Sample</span> &#123;</span></span><br><span class="line">    <span class="keyword">private</span> :</span><br><span class="line">        <span class="keyword">int</span> value;</span><br><span class="line">    	<span class="keyword">mutable</span> <span class="keyword">int</span> m;</span><br><span class="line">    <span class="keyword">public</span>:</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">func</span><span class="params">()</span> </span>&#123; &#125;;</span><br><span class="line">        <span class="built_in">Sample</span>() &#123; &#125;</span><br><span class="line">        <span class="function"><span class="keyword">void</span> <span class="title">SetValue</span><span class="params">()</span> <span class="keyword">const</span> </span>&#123; </span><br><span class="line">            value = <span class="number">0</span>; <span class="comment">// wrong</span></span><br><span class="line">            <span class="built_in">func</span>(); <span class="comment">//wrong</span></span><br><span class="line">            m++; <span class="comment">//ok</span></span><br><span class="line">        &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">const</span> Sample Obj; </span><br><span class="line">Obj.<span class="built_in">SetValue</span> (); <span class="comment">//常量对象上可以使用常量成员函数</span></span><br></pre></td></tr></table></figure>
 
 
         <hr>
         <!-- Pager -->
         <ul class="pager">
           
-          <li class="previous">
-            <a href="/notes/tt/" data-toggle="tooltip" data-placement="top" title="">&larr; Previous Post</a>
-          </li>
-          
           
           <li class="next">
-            <a href="/notes/start-again/" data-toggle="tooltip" data-placement="top" title="start again">Next Post &rarr;</a>
+            <a href="/undefined/C-From-C-to-C/" data-toggle="tooltip" data-placement="top" title="[CPP] From C to CPP">Next Post &rarr;</a>
           </li>
           
         </ul>
@@ -506,7 +598,7 @@
         <div id="toc" class="toc-article">
         <strong class="toc-title">Contents</strong>
         
-          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">Guessing Game</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-Code"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">The Code</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-println-Macro"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">The println! Macro</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-use-Statement"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">The use Statement</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#standard-library"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">standard library</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#std-io"><span class="toc-nav-number">1.3.1.1.</span> <span class="toc-nav-text">std::io</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#crates"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">crates</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-let-Statement"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">The let Statement</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#The-match-Statement"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">The match Statement</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#Result"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">Result</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#std-cmp-Ordering"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">std::cmp::Ordering</span></a></li></ol></li></ol>
+          <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-1"><a class="toc-nav-link"><span class="toc-nav-number">1.</span> <span class="toc-nav-text">类与面向对象</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E7%B1%BB%E6%88%90%E5%91%98%E7%9A%84%E5%8F%AF%E8%AE%BF%E9%97%AE%E8%8C%83%E5%9B%B4"><span class="toc-nav-number">1.1.</span> <span class="toc-nav-text">类成员的可访问范围</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0%E7%9A%84%E9%87%8D%E8%BD%BD%E5%8F%8A%E5%8F%82%E6%95%B0%E7%BC%BA%E7%9C%81"><span class="toc-nav-number">1.2.</span> <span class="toc-nav-text">成员函数的重载及参数缺省</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E3%80%81%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E5%87%BD%E6%95%B0%E4%B8%8E%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="toc-nav-number">1.3.</span> <span class="toc-nav-text">构造函数、复制构造函数、类型转换函数与析构函数</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E6%A6%82%E5%BF%B5"><span class="toc-nav-number">1.3.1.</span> <span class="toc-nav-text">构造函数的概念</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E5%9C%A8%E6%95%B0%E7%BB%84%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="toc-nav-number">1.3.2.</span> <span class="toc-nav-text">构造函数在数组中的使用</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E5%A4%8D%E5%88%B6%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-nav-number">1.3.3.</span> <span class="toc-nav-text">复制构造函数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E7%B1%BB%E5%9E%8B%E8%BD%AC%E6%8D%A2%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="toc-nav-number">1.3.4.</span> <span class="toc-nav-text">类型转换构造函数</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#%E6%9E%90%E6%9E%84%E5%87%BD%E6%95%B0"><span class="toc-nav-number">1.3.5.</span> <span class="toc-nav-text">析构函数</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#this%E6%8C%87%E9%92%88"><span class="toc-nav-number">1.4.</span> <span class="toc-nav-text">this指针</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E9%9D%99%E6%80%81%E6%88%90%E5%91%98"><span class="toc-nav-number">1.5.</span> <span class="toc-nav-text">静态成员</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E6%88%90%E5%91%98%E5%AF%B9%E8%B1%A1%E5%92%8C%E5%B0%81%E9%97%AD%E7%B1%BB"><span class="toc-nav-number">1.6.</span> <span class="toc-nav-text">成员对象和封闭类</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%8F%8B%E5%85%83-friends"><span class="toc-nav-number">1.7.</span> <span class="toc-nav-text">友元 friends</span></a></li><li class="toc-nav-item toc-nav-level-2"><a class="toc-nav-link" href="#%E5%B8%B8%E9%87%8F%E6%88%90%E5%91%98%E5%87%BD%E6%95%B0"><span class="toc-nav-number">1.8.</span> <span class="toc-nav-text">常量成员函数</span></a></li></ol></li></ol>
         
         </div>
       </aside>
@@ -529,7 +621,7 @@
           </h5>
           <div class="tags">
             
-            <a class="tag" href="/tags/#rust" title="rust">rust</a>
+            <a class="tag" href="/tags/#cpp" title="cpp">cpp</a>
             
           </div>
         </section>
